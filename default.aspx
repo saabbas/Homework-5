@@ -11,7 +11,7 @@
     <form id="form1" runat="server">
     <div>
     
-    <span class="head">Sean&#39;s Mortgage Calculator</span>
+    <span class="head">Sean&#39;s Loan Calculator</span>
         
         <br /><br />
      
@@ -46,18 +46,38 @@
         
         <br /><br />
 
-        &nbsp;&nbsp;&nbsp;&nbsp;<span class="char">*</span> - Indicates a required field. The loan calculator will not function unless all required fields are complete.
-        <br /><br />        
-        <span class="head1">Monthly Payment:</span> &nbsp; <asp:Label ID="lblMonthlyPmt" runat="server"></asp:Label>
+        <span class="char">*</span> - Indicates a required field. 
+        <br /><br /> 
+               
+           <% If Not IsPostBack Then%>
+            <!-- This is the first time the page has loaded. There is nothing to display. -->
+
+            Welcome to my loan calculator. Please complete the fields above to find out how much you owe every month!
+        <br />
+              
+        <% Else%>
+            <!-- Then the page is in postback so show the monthly payment and payment schedule. -->
+                <br />
+         
+            Monthly Payment: &nbsp; <span class="bold"><asp:Label ID="lblMonthlyPmt" runat="server"></asp:Label></span>
         
-        <br /><br />
+                <br /><br />
         
-        <asp:GridView ID="loanGridView" runat="server" />
-            <RowStyle BackColor="#00cc00" />
-            <AlternatingRowStyle BackColor="#FF7400" />
-            <HeaderStyle BackColor="#1240AB" ForeColor="White" Height="50px" HorizontalAlign="Center" VerticalAlign="Middle" Width="200px" />
-            <RowStyle Height="40px" HorizontalAlign="Center" VerticalAlign="Middle" Width="400px" />
-        </asp:GridView>
+                <asp:GridView ID="loanGridView" runat="server" CssClass="cssgridview">
+                    <AlternatingRowStyle CssClass="alt" />
+                </asp:GridView>
+        <% End If%>
+
+
+
+
+     
+           
+        
+        
+        
+       
+
 
         </div>
     </form>
