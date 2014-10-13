@@ -54,6 +54,12 @@ Partial Class _Default
         loanAmortTbl.Columns.Add("Payment Date", System.Type.GetType("System.String"))
         loanAmortTbl.Columns.Add("New Balance", System.Type.GetType("System.String"))
 
+        'Starts mortgage payment schedule beginning on the current date
+        pmtDate = Date.Now
+
+        'Initialize payment cycle
+        pmtDate = DateAdd("m", 1, pmtDate)
+
         'This section uses the for loop to display the loan balance and interest paid over the term of the loan.
         Dim counterStart As Integer
 
@@ -74,6 +80,7 @@ Partial Class _Default
             tRow("Interest Paid") = String.Format("{0:C}", interestPaid)
             loanAmortTbl.Rows.Add(tRow)
 
+
             'Loops to next counterStart (Continues loop until counterStart requirements are met (loanTerm)).
         Next counterStart
 
@@ -93,6 +100,14 @@ Partial Class _Default
 
         'Clear Gridview
         loanGridView.Visible = False
+
+        'Clear vaildator messages
+
+        'ensure the validators are not visible
+        rfv_LoanTerm.Visible = False
+        rfv_LoanAmount.Visible = False
+        rfv_AnnualInterest.Visible = False
+
     End Sub
 
 
