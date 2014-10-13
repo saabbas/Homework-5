@@ -16,6 +16,7 @@ Partial Class _Default
         Dim interestPaid As Double
         Dim nBalance As Double
         Dim principal As Double
+        Dim pmtDate As Date
 
         'Declaring a table to hold the payment information.
         Dim table As DataTable = New DataTable("ParentTable")
@@ -50,7 +51,8 @@ Partial Class _Default
         loanAmortTbl.Columns.Add("Payment Number", System.Type.GetType("System.String"))
         loanAmortTbl.Columns.Add("Principal Paid", System.Type.GetType("System.String"))
         loanAmortTbl.Columns.Add("Interest Paid", System.Type.GetType("System.String"))
-
+        loanAmortTbl.Columns.Add("Payment Date", System.Type.GetType("System.String"))
+        loanAmortTbl.Columns.Add("New Balance", System.Type.GetType("System.String"))
 
         'This section uses the for loop to display the loan balance and interest paid over the term of the loan.
         Dim counterStart As Integer
@@ -65,6 +67,8 @@ Partial Class _Default
 
             'Writes the data to a new row in the gridview.
             tRow = loanAmortTbl.NewRow()
+            tRow("Payment Date") = String.Format("{0:MM/dd/yy}", pmtDate)
+            tRow("New Balance") = String.Format("{0:C}", nBalance)
             tRow("Payment Number") = String.Format(counterStart)
             tRow("Principal Paid") = String.Format("{0:C}", principal) ' String.Format("{0:C},principal) formats the variable "prinicpal" as currency (C).
             tRow("Interest Paid") = String.Format("{0:C}", interestPaid)
@@ -79,5 +83,17 @@ Partial Class _Default
 
 
     End Sub
+
+    Protected Sub btnClear_Click(sender As Object, e As EventArgs) Handles btnClear.Click
+        'Clear out the following text boxes
+        tbAnnualInterest.Text = String.Empty
+        tbLoanAmt.Text = String.Empty
+        tbLoanTerm.Text = String.Empty
+        lblMonthlyPmt.Text = String.Empty
+
+        'Clear Gridview
+        loanGridView.Visible = False
+    End Sub
+
 
 End Class
