@@ -80,6 +80,7 @@ Partial Class _Default
             tRow("Interest Paid") = String.Format("{0:C}", interestPaid)
             loanAmortTbl.Rows.Add(tRow)
 
+            pmtDate = DateAdd("m", 1, pmtDate)
 
             'Loops to next counterStart (Continues loop until counterStart requirements are met (loanTerm)).
         Next counterStart
