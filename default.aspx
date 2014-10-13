@@ -66,19 +66,7 @@
                 <asp:GridView ID="loanGridView" runat="server" CssClass="cssgridview">
                     <AlternatingRowStyle CssClass="alt" />
                 </asp:GridView>
-        <% End If%>
-
-
-
-
-     
-           
-        
-        
-        
-       
-
-
+        <% End If%>               
         </div>
     </form>
 </body>
